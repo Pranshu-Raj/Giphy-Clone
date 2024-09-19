@@ -2,6 +2,10 @@ import React from "react";
 import { FaInstagram, FaYoutube } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 
+/**
+ * Renders a component displaying social media follow links.
+ * @returns {JSX.Element} A div containing "Follow on" text and social media icons with links.
+ */
 export default function FollowOn() {
   return (
     <div className="faded-text pt-2">
