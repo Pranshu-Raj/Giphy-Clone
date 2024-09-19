@@ -4,6 +4,10 @@ import { Gifstate } from "../context/context";
 import FollowOn from "../components/FollowOn";
 import { Gif } from "../components/Gif";
 
+/**
+ * Renders a category page displaying GIFs based on the specified category.
+ * @returns {JSX.Element} A component that shows a featured GIF, category title, and a grid of related GIFs.
+ */
 function category() {
   const [searchResults, setSearchResults] = useState([]);
 
@@ -11,10 +15,20 @@ function category() {
 
   const { category } = useParams();
 
+  /**
+   * Fetches GIF search results asynchronously based on the current category
+   * @param {void} - This function doesn't take any parameters
+   * @returns {Promise<void>} A promise that resolves when the search results are fetched and set
+   */
   async function fetchSearchResults() {
     const { data } = await gf.gifs(category, category);
     setSearchResults(data);
   }
+  /**
+   * Fetches search results when the category changes
+   * @param {undefined} No explicit parameters
+   * @returns {void} This effect does not return a value
+   */
   useEffect(() => {
     fetchSearchResults();
   }, [category]);
@@ -34,6 +48,11 @@ function category() {
           {category.split("-").join(" & ")} GIFs
         </h2>
         <h2 className="text-lg text-gray-400 pb-3 font-bold hover:text-gray-50 cursor-pointer">
+          /**
+           * Renders a list of GIF components based on search results
+           * @param {Array} searchResults - An array of GIF objects from search results
+           * @returns {Array} An array of Gif components, excluding the first search result
+           */
           @{category}
         </h2>
 
