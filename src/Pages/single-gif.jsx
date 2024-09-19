@@ -15,10 +15,22 @@ import FollowOn from "../components/FollowOn";
 
 const contentType = ["gifs", "stickers", "texts"];
 
+/**
+ * Renders a page displaying a specific GIF and related GIFs
+ * @returns {JSX.Element} The rendered GIF page component
+ */
 export default function GifPage() {
   const { type, slug } = useParams();
   const [gif, setGif] = useState({});
   const [relatedGifs, setRelatedGifs] = useState([]);
+  /**
+   * Fetches a specific GIF and related GIFs based on the provided slug
+   * @param {string} type - The content type to validate
+   * @param {string} slug - The slug containing the GIF ID
+   * @param {function} setGif - Function to set the fetched GIF data
+   * @param {function} setRelatedGifs - Function to set the related GIFs data
+   * @returns {void} This effect does not return anything
+   */
   const [readMore, setReadMore] = useState(false);
 
   const { gf, addToFavourites, favorites = [] } = Gifstate();
@@ -27,6 +39,11 @@ export default function GifPage() {
     if (!contentType.includes(type)) {
       throw new Error("Invalid Content Type");
     }
+    /**
+     * Fetches a specific GIF and related GIFs based on the provided slug
+     * @param {void} - This function doesn't take any parameters
+     * @returns {Promise<void>} Asynchronously updates the state with fetched GIF and related GIFs
+     */
     async function fetchGif() {
       const gifId = slug.split("-");
       const { data } = await gf.gif(gifId[gifId.length - 1]);
@@ -40,10 +57,18 @@ export default function GifPage() {
     fetchGif();
   }, []);
 
+  /**
+   * Shares a GIF.
+   * @returns {void} This function does not return a value.
+   */
   const shareGif = () => {
     // Assignment
   };
 
+  /**
+   * Renders a component for embedding a GIF
+   * @returns {JSX.Element} The embedded GIF component
+   */
   const EmbedGif = () => {
     // Assignment
   };
@@ -67,6 +92,13 @@ export default function GifPage() {
             {gif?.user?.description && (
               <p className="py-4 whitespace-pre-line text-sm text-gray-400">
                 {readMore
+                  ```
+                  /**
+                   * Toggles the readMore state when clicked
+                   * @param {void} - No parameters
+                   * @returns {void} Does not return a value
+                   */
+                  ```
                   ? gif?.user?.description
                   : gif?.user?.description.slice(0, 100) + "..."}
                 <div
@@ -120,6 +152,12 @@ export default function GifPage() {
                 src={gif?.user?.avatar_url}
                 alt={gif?.user?.display_name}
                 className="h-14"
+              /**
+               * Adds the selected GIF to the user's favorites list
+               * @param {Function} onClick - Event handler function to be called when the element is clicked
+               * @param {string} gif.id - The unique identifier of the GIF to be added to favorites
+               * @returns {void} This function doesn't return a value
+               */
               />
               <div className="px-2">
                 <div className="font-bold">{gif?.user?.display_name}</div>
@@ -162,6 +200,11 @@ export default function GifPage() {
             </button>
           </div>
         </div>
+/**
+ * Renders a list of related GIFs, excluding the first one
+ * @param {Array} relatedGifs - An array of GIF objects
+ * @returns {Array} An array of Gif components, each representing a related GIF
+ */
 
         <div>
           <span className="font-extrabold">Related GIFs</span>
