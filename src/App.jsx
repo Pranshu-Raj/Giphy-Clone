@@ -44,6 +44,10 @@ const router = createBrowserRouter([
   },
 ]);
 
+/**
+ * Renders the main application component
+ * @returns {JSX.Element} The root component of the application, wrapped in a GifProvider and containing a RouterProvider
+ */
 function App() {
   return (
     <>
