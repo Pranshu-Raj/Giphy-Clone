@@ -1,6 +1,12 @@
 import React from 'react'
 
-function Favourites() {
+```
+/**
+ * Renders the Favourites component
+ * @returns {JSX.Element} A div element containing the text "Favourites"
+ */
+
+```function Favourites() {
   return (
     <div>Favourites</div>
   )
