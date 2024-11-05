@@ -1,5 +1,11 @@
 import { Link } from "react-router-dom";
 
+/**
+ * Renders a GIF component with an optional hover effect.
+ * @param {Object} gif - The GIF object containing information like images, title, user details, etc.
+ * @param {boolean} [hover=true] - Whether to show the hover effect with user details. Defaults to true.
+ * @returns {JSX.Element} A Link component wrapping the GIF image and optional hover overlay.
+ */
 export function Gif({ gif, hover = true }) {
   return (
     <Link to={`/${gif.type}s/${gif.slug}`}>

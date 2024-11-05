@@ -21,6 +21,13 @@ const filters = [
   },
 ];
 
+/**
+ * Renders a filter component for GIFs with optional trending display
+ * @param {Object} options - Configuration options for the filter
+ * @param {boolean} [options.alignLeft=false] - Whether to align the filter to the left
+ * @param {boolean} [options.showTrending=false] - Whether to show the trending section
+ * @returns {JSX.Element} A div containing filter options and optional trending display
+ */
 function filterGifs({ alignLeft = false, showTrending = false }) {
   const { filter, setFilter } = Gifstate();
   return (
@@ -40,9 +47,23 @@ function filterGifs({ alignLeft = false, showTrending = false }) {
       )}
 
       <div className="flex min-w-80 rounded-full bg-gray-800">
+        /**
+         * Renders a list of filter options as clickable spans
+         * @param {Array} filters - An array of filter objects containing title, value, and background properties
+         * @param {string} filter - The currently selected filter value
+         * @param {function} setFilter - A function to update the selected filter
+         * @returns {Array} An array of JSX span elements representing filter options
+         */
         {filters.map((f) => {
           return (
             <span
+              /**
+               * Sets the filter value when clicked
+               * @param {Function} onClick - Event handler function
+               * @param {Function} setFilter - Function to update the filter state
+               * @param {*} f.value - The value to set as the new filter
+               * @returns {void}
+               */
               onClick={() => setFilter(f.value)}
               className={`${
                 filter === f.value ? f.background : ""
